@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pulseApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/favicon.png">
+
+    <title>ITP Pulse</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      html,body,div#top-container,div#pulse-box,div#pulse-carousel,div.carousel-inner,div.item {
+        height: 100%;
+      }
+      div.carousel-caption {
+        background-color: #222222;
+      }
+      img.pulse-img {
+        width: 100%;
+      }
+    </style>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container" id="top-container">
+      <h1>ITP Pulse</h1>
+      <div id="pulse-box" ng-controller="FeedCtrl">
+        <div id="pulse-carousel" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="item {{active($index)}}" ng-repeat="entry in feed | orderBy:'published':'reverse'">
+              <img ng-src="{{entry.image}}" class="pulse-img" />
+              <div class="container">
+                <div class="carousel-caption">
+                  <a ng-href="{{entry.link}}"><h1>{{entry.title}}</h1></a>
+                  <p><h2><em>{{entry.name}}</em></h2></p>
+                </div> <!-- .carousel-caption -->
+              </div> <!-- .container -->
+            </div> <!-- .item -->
+          </div> <!-- .carousel-inner -->
+            <a class="left carousel-control" href="#pulse-carousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#pulse-carousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div> <!-- #pulse-carousel -->
+      </div> <!-- #pulse-box -->
+    </div> <!-- .container -->
+
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.min.js"></script>
+    <script>
+      var pulseApp = angular.module('pulseApp', []);
+ 
+      pulseApp.controller('FeedCtrl', function ($scope, $http) {
+        $scope.active = function(index) {
+          if (index === 0) {
+            return 'active';
+          }
+          else {
+            return '';
+          }
+        };
+
+        $http.get('data/feed.json').success(function(data) {
+          $scope.feed = data;
+        });
+      });
+    </script>
+  </body>
+</html>
+
