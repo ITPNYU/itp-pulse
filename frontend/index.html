@@ -13,8 +13,11 @@
     <!-- Bootstrap core CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-      html,body,div#top-container,div#pulse-box,div#pulse-carousel,div.carousel-inner,div.item {
+      html,body,div#pulse-box,div#pulse-carousel,div.carousel-inner,div.item {
         height: 100%;
+      }
+      div#top-container {
+        height: 80%;
       }
       div.carousel-caption {
         background-color: #222222;
@@ -34,6 +37,7 @@
   <body>
     <div class="container" id="top-container">
       <h1>ITP Pulse</h1>
+      <p><em>ITP blogs, right now</em></p>
       <div id="pulse-box" ng-controller="FeedCtrl">
         <div id="pulse-carousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
