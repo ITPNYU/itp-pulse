@@ -25,6 +25,9 @@
       img.pulse-img {
         width: 100%;
       }
+      div.pulse-banner {
+        text-align: center;
+      }
     </style>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,8 +39,10 @@
 
   <body>
     <div class="container" id="top-container">
-      <h1>ITP Pulse</h1>
-      <p><em>ITP blogs, right now</em></p>
+      <div class="pulse-banner">
+        <h1>ITP Pulse</h1>
+        <p><em>ITP blogs, right now</em></p>
+      </div>
       <div id="pulse-box" ng-controller="FeedCtrl">
         <div id="pulse-carousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
